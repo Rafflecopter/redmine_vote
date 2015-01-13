@@ -30,6 +30,7 @@ $(document).ready(function() {
 	$('#vote_up').click(function(event) {
 		vote('up');
         record_vote_today()
+        $('#vote_up').remove()
 		return false; // Prevent link from following its href
 	});
 	
@@ -48,7 +49,7 @@ $(document).ready(function() {
 
 function user_can_vote() {
   var midnight = _midnight()
-  var last_vote = new Date(localStorage.getItem(location.pathname) || 0)
+  var last_vote = new Date(parseInt(localStorage.getItem(location.pathname) || 0, 10))
 
   return last_vote < midnight
 }
