@@ -7,11 +7,7 @@
 <%= hidden_field_tag 'vote_issue_id', @issue.id %>
 
 <% if allowed_to_vote?(@issue, :up) or allowed_to_vote?(@issue, :down) %>
-  <% if allowed_to_vote?(@issue, :up, 2) or allowed_to_vote?(@issue, :down, 2) %>
-    <!-- n/a -->
-  <% else %>
-    <%= hidden_field_tag 'vote_count', '1' %>
-  <% end %>
+  <%= hidden_field_tag 'vote_count', '1' %>
   <% if allowed_to_vote?(@issue, :up) %>
     <%= link_to("", { :controller => 'vote', :action => 'up', :id => @issue }, :class => 'icon icon-vote-up', :method => 'post', :id => 'vote_up') %>
   <% end %>
