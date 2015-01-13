@@ -24,7 +24,7 @@ function clear() {
 
 $(document).ready(function() {
     if (! user_can_vote()) {
-      $('#vote-up').remove()
+      $('#vote_up').remove()
     }
 
 	$('#vote_up').click(function(event) {
