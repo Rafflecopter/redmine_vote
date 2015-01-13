@@ -23,8 +23,13 @@ function clear() {
 }
 
 $(document).ready(function() {
+    if (! user_can_vote()) {
+      $('#vote-up').remove()
+    }
+
 	$('#vote_up').click(function(event) {
 		vote('up');
+        record_vote_today()
 		return false; // Prevent link from following its href
 	});
 	
@@ -38,3 +43,27 @@ $(document).ready(function() {
 		return false;
 	});
 });
+
+
+
+function user_can_vote() {
+  var midnight = _midnight()
+  var last_vote = new Date(localStorage.getItem(location.pathname) || 0)
+
+  return last_vote < midnight
+}
+
+function record_vote_today() {
+  localStorage.setItem(location.pathname, Date.now())
+}
+
+function _midnight() {
+  var d = new Date
+  d.setHours(0)
+  d.setMinutes(0)
+  d.setSeconds(0)
+  d.setMilliseconds(1)
+
+  return d
+}
+
