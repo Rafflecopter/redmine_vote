@@ -49,13 +49,13 @@ $(document).ready(function() {
 
 function user_can_vote() {
   var midnight = _midnight()
-  var last_vote = new Date(parseInt(localStorage.getItem(location.pathname) || 0, 10))
+  var last_vote = new Date(parseInt(localStorage.getItem("USER_LAST_VOTE") || 0, 10))
 
   return last_vote < midnight
 }
 
 function record_vote_today() {
-  localStorage.setItem(location.pathname, Date.now())
+  localStorage.setItem("USER_LAST_VOTE", Date.now())
 }
 
 function _midnight() {
